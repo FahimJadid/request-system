@@ -17,6 +17,8 @@ export const validateQuery = (schema: ZodSchema) => (req: Request, res: Response
         res.status(400).json({ errors: result.error.errors });
         return;
     }
-    req.query = result.data;
+    // Instead of reassigning req.query, copy properties
+    Object.keys(req.query).forEach(key => delete req.query[key]);
+    Object.assign(req.query, result.data);
     next();
 };

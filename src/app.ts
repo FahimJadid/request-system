@@ -4,13 +4,16 @@ dotenv.config();
 import setRoutes from './routes/requestRoutes';
 import connectDB from './utils/db';
 import { errorHandler } from './utils/errorHandler';
-
+import { swaggerSpec, swaggerUi } from './utils/swagger';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Serve Swagger docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(setRoutes());
 

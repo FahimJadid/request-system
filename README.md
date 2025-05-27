@@ -12,6 +12,7 @@ A simple Test Task using RESTful API for handling anonymous requests, built with
 - List requests with optional date filtering (by date or date range)
 - Cancel all requests that are "In progress"
 - All requests are anonymous (no user accounts)
+- **API documentation with Swagger (OpenAPI)**
 
 ---
 
@@ -24,8 +25,10 @@ request-system
 │   ├── models               # Mongoose models
 │   ├── routes               # API route definitions
 │   ├── services             # Business logic
-│   ├── utils                # Utility functions (e.g., DB connection)
+│   ├── utils                # Utility functions (e.g., DB connection, Error handling, Swagger)
+│   ├── middleware           # Middleware functions (e.g., validation)
 │   ├── types                # TypeScript types
+│   ├── validators           # Zod validation schemas
 │   └── app.ts               # Application entry point
 ├── .env                     # Environment variables (MongoDB URI, etc.)
 ├── package.json             # Dependencies and scripts
@@ -39,7 +42,7 @@ request-system
 
 1. **Clone the repository**
    ```sh
-   git clone <repository-url>
+   git clone https://github.com/FahimJadid/request-system.git
    cd request-system
    ```
 
@@ -72,6 +75,22 @@ request-system
    npm run dev
    ```
    The server will start on the port specified in `.env` (default: 3000).
+
+---
+
+## API Documentation
+
+**Swagger UI is available at:**  
+[http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+
+You can use this interactive documentation to explore and test all API endpoints, view request/response schemas, and see example payloads.
+
+### How to Test with Swagger
+
+1. Start your server (`npm run dev`).
+2. Open [http://localhost:3000/api-docs](http://localhost:3000/api-docs) in your browser.
+3. Expand any endpoint, click **"Try it out"**, fill in parameters or body, and click **"Execute"**.
+4. See the live response from your API.
 
 ---
 
@@ -177,6 +196,7 @@ request-system
 - Always set `Content-Type: application/json` in the Headers for POST/PATCH requests.
 - Use the response from the create request to get the `id` for other operations.
 - Dates should be in `YYYY-MM-DD` format.
+- For full API details and schemas, use the [Swagger UI](http://localhost:3000/api-docs).
 
 ---
 
